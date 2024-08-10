@@ -13,7 +13,7 @@ jobs:
           node-version: 16
       
       - name: "npm install"
-        uses: npm install
+        run: npm install
 
       - name: "setup GCP"
         uses: "google-github-actions/setup-gcloud@v1"
