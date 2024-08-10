@@ -25,6 +25,9 @@ jobs:
         with:
           version: "latest"
 
+      - name: Authenticate Docker to Google Cloud
+        run: gcloud auth configure-docker --quiet
+
       - name: "Install Pulumi dependencies"
         run: pulumi install
         working-directory: pulumi
