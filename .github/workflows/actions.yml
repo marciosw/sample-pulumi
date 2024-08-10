@@ -27,7 +27,7 @@ jobs:
 
       - name: "Install Pulumi dependencies"
         run: pulumi install
-        working-directory: path/to/your/pulumi/project
+        working-directory: pulumi
 
       - name: "Setup and run Pulumi"
         uses: pulumi/actions@v3
