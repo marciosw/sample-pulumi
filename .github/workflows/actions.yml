@@ -31,7 +31,7 @@ jobs:
           pulumi-version: v3.128.0
           command: up  # Specify the command to execute
           stack-name: marciosw/quickstart/devlinux  # Specify the stack name
-          work-dir: path/to/your/pulumi/project  # Ensure this is set correctly
+          work-dir: pulumi  # Ensure this is set correctly
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
           CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
