@@ -1,0 +1,64 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+out-tsc/
+build/
+
+# Environment files
+/src/environments/*.prod.ts
+
+# Angular generated files
+.angular/
+.angular/cache/
+.angular/**/ngsw-config.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# IDEs and Editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# Compiled TypeScript files
+*.js
+*.d.ts
+*.js.map
+
+# Coverage directory
+coverage/
+
+# npm package lock files
+package-lock.json
+
+# Compiled CSS files
+*.css
+*.css.map
+
+# Compiled Sass files
+*.sass-cache/
+
+# Service workers
+ngsw-worker.js
+ngsw.json
+
+# Miscellaneous
+*.log
+*.log.*
