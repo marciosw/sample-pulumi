@@ -25,6 +25,10 @@ jobs:
         with:
           version: "latest"
 
+      - name: "Install Pulumi dependencies"
+        run: pulumi install
+        working-directory: path/to/your/pulumi/project
+
       - name: "Setup and run Pulumi"
         uses: pulumi/actions@v3
         with:
