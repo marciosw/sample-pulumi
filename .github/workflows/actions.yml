@@ -8,46 +8,20 @@ jobs:
     steps: 
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 16
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    
+    - name: "npm install"
+      uses: npm install
 
-      - name: "npm install"
-        run: npm install
+    - name: "setup GCP"
+      uses: "google-github-actions/setup-gcloud@v1"
 
-      - name: "auth GCP"
-        uses: "google-github-actions/auth@v1"
-        with:
-          credentials_json: "${{ secrets.GCP_TOKEN }}"
-
-      - name: "setup GCP"
-        uses: "google-github-actions/setup-gcloud@v1"
-        with:
-          version: "latest"
-
-      - name: Authenticate Docker to Google Cloud
-        run: gcloud auth configure-docker --quiet
-
-      - name: "Install Pulumi dependencies"
-        run: pulumi install
-        working-directory: pulumi
-
-      - name: "Setup and run Pulumi"
-        uses: pulumi/actions@v3
-        with:
-          pulumi-version: v3.128.0
-          command: up  # Specify the command to execute
-          stack-name: marciosw/quickstart/devlinux  # Specify the stack name
-          work-dir: pulumi  # Ensure this is set correctly
-        env:
-          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
-          CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
-          GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
-          GOOGLE_GHA_CREDS_PATH: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
-          CLOUDSDK_CORE_PROJECT: udemyiactraining-429511
-          CLOUDSDK_PROJECT: udemyiactraining-429511
-          GCLOUD_PROJECT: udemyiactraining-429511
-          GCP_PROJECT: udemyiactraining-429511
-          GOOGLE_CLOUD_PROJECT: udemyiactraining-429511
-          CLOUDSDK_METRICS_ENVIRONMENT: github-actions-setup-gcloud
-          CLOUDSDK_METRICS_ENVIRONMENT_VERSION: 1.1.1
+    - name: "exec pulumi"
+      uses: pulumi/actions@v3
+      with:
+        command: preview
+        stack-name: dev
+      env: 
+        PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
