@@ -25,15 +25,22 @@ jobs:
         with:
           version: "latest"
 
-      - name: "exec pulumi"
+      - name: "Setup and run Pulumi"
         uses: pulumi/actions@v3
         with:
           pulumi-version: v3.128.0
-
-      - name: Change to the Pulumi project directory
-        run: cd pulumi
-
-      - name: Deploy using Pulumi
-        run: pulumi up --stack marciosw/quickstart/devlinux --non-interactive
+          command: up  # Specify the command to execute
+          stack-name: marciosw/quickstart/devlinux  # Specify the stack name
+          work-dir: path/to/your/pulumi/project  # Ensure this is set correctly
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
+          CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
+          GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
+          GOOGLE_GHA_CREDS_PATH: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
+          CLOUDSDK_CORE_PROJECT: udemyiactraining-429511
+          CLOUDSDK_PROJECT: udemyiactraining-429511
+          GCLOUD_PROJECT: udemyiactraining-429511
+          GCP_PROJECT: udemyiactraining-429511
+          GOOGLE_CLOUD_PROJECT: udemyiactraining-429511
+          CLOUDSDK_METRICS_ENVIRONMENT: github-actions-setup-gcloud
+          CLOUDSDK_METRICS_ENVIRONMENT_VERSION: 1.1.1
