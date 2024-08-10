@@ -8,20 +8,20 @@ jobs:
     steps: 
       - uses: actions/checkout@v3
 
-    - uses: actions/setup-node@v3
-      with:
-        node-version: 16
-    
-    - name: "npm install"
-      uses: npm install
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+      
+      - name: "npm install"
+        uses: npm install
 
-    - name: "setup GCP"
-      uses: "google-github-actions/setup-gcloud@v1"
+      - name: "setup GCP"
+        uses: "google-github-actions/setup-gcloud@v1"
 
-    - name: "exec pulumi"
-      uses: pulumi/actions@v3
-      with:
-        command: preview
-        stack-name: dev
-      env: 
-        PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
+      - name: "exec pulumi"
+        uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: dev
+        env: 
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
