@@ -27,6 +27,6 @@ jobs:
         uses: pulumi/actions@v3
         with:
           command: preview
-          stack-name: devlinux
+          stack-name: marciosw/quickstart/devlinux
         env: 
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
