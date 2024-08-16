@@ -11,43 +11,50 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
+      - name: "auth GCP"
+        uses: "google-github-actions/auth@v1"
+        with: 
+          credentials_json: "${{ secrets.GCP_TOKEN }}"
+
 
       - name: "npm install"
         run: npm install
 
-      - name: "auth GCP"
-        uses: "google-github-actions/auth@v1"
-        with:
-          credentials_json: "${{ secrets.GCP_TOKEN }}"
-
       - name: "setup GCP"
         uses: "google-github-actions/setup-gcloud@v1"
-        with:
-          version: "latest"
 
-      - name: Authenticate Docker to Google Cloud
-        run: gcloud auth configure-docker --quiet
+      - name: Change to pulumi directory
+        run: cd pulumi
 
-      - name: "Install Pulumi dependencies"
-        run: pulumi install
-        working-directory: pulumi
-
-      - name: "Setup and run Pulumi"
+      - name: "exec pulumi"
         uses: pulumi/actions@v3
         with:
-          pulumi-version: v3.128.0
-          command: up  # Specify the command to execute
-          stack-name: marciosw/quickstart/devlinux  # Specify the stack name
-          work-dir: pulumi  # Ensure this is set correctly
-        env:
+          command: preview
+          stack-name: marciosw/quickstart/devlinux
+        env: 
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
-          CLOUDSDK_AUTH_CREDENTIAL_FILE_OVERRIDE: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
-          GOOGLE_APPLICATION_CREDENTIALS: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
-          GOOGLE_GHA_CREDS_PATH: /home/runner/work/sample-pulumi/sample-pulumi/gha-creds-85d940dd69603085.json
-          CLOUDSDK_CORE_PROJECT: udemyiactraining-429511
-          CLOUDSDK_PROJECT: udemyiactraining-429511
-          GCLOUD_PROJECT: udemyiactraining-429511
-          GCP_PROJECT: udemyiactraining-429511
-          GOOGLE_CLOUD_PROJECT: udemyiactraining-429511
-          CLOUDSDK_METRICS_ENVIRONMENT: github-actions-setup-gcloud
-          CLOUDSDK_METRICS_ENVIRONMENT_VERSION: 1.1.1
+
+
+my Pulumi.yaml is in pulumi folder, so I included run to "cd pulumi" as you can see above, but the error still hapens:
+
+Successfully authenticated
+0s
+Run cd pulumi
+  
+4s
+Run pulumi/actions@v3
+  
+Configured range: ^3
+Matched version: v3.129.0
+Install destination is /home/runner/.pulumi
+Successfully deleted pre-existing /home/runner/.pulumi/bin
+/usr/bin/tar xz --warning=no-unknown-keyword --overwrite -C /home/runner/.pulumi -f /home/runner/work/_temp/53435c16-55e7-480c-be19-aafe6878fa89
+Logging into the Pulumi Service backend.
+Error: code: -2
+ stdout: 
+ stderr: Command failed with exit code 255: pulumi stack select --stack marciosw/quickstart/devlinux --non-interactive
+error: no Pulumi.yaml project file found (searching upwards from /home/runner/work/sample-pulumi/sample-pulumi). If you have not created a project yet, use `pulumi new` to do so: no project file found
+ err?: Error: Command failed with exit code 255: pulumi stack select --stack marciosw/quickstart/devlinux --non-interactive
+error: no Pulumi.yaml project file found (searching upwards from /home/runner/work/sample-pulumi/sample-pulumi). If you have not created a project yet, use `pulumi new` to do so: no project file found
+
+
