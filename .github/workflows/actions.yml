@@ -5,7 +5,6 @@ on: [push]
 jobs: 
   testing-action:
     runs-on: ubuntu-latest
-    working-directory: ./pulumi # Set the working directory for the entire job
     steps: 
       - uses: actions/checkout@v3
 
@@ -27,6 +26,7 @@ jobs:
       - name: "exec pulumi" # This should now work correctly!
         uses: pulumi/actions@v3
         with:
+          working-directory: ./pulumi 
           command: preview 
           stack-name: marciosw/quickstart/devlinux
         env: 
