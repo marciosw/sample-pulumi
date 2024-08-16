@@ -23,6 +23,9 @@ jobs:
       - name: "setup GCP"
         uses: "google-github-actions/setup-gcloud@v1"
 
+      - name: Change to infrastructure directory
+        run: cd infrastructure
+
       - name: "exec pulumi"
         uses: pulumi/actions@v3
         with:
