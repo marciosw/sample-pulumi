@@ -11,7 +11,12 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-      
+      - name: "auth GCP"
+        uses: "google-github-actions/auth@v1"
+        with: 
+          credentials_json: "${{ secrets.GCP_TOKEN }}"
+
+
       - name: "npm install"
         run: npm install
 
@@ -21,10 +26,7 @@ jobs:
       - name: "exec pulumi"
         uses: pulumi/actions@v3
         with:
-          pulumi-version: v3.128.0
-      
-      - name: "Deploy using Pulumi"
-        run: pulumi preview --stack devlinux --non-interactive
-        work-dir: ./pulumi   
+          command: preview
+          stack-name: devlinux
         env: 
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
