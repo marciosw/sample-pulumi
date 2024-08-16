@@ -21,7 +21,7 @@ jobs:
       - name: "exec pulumi"
         uses: pulumi/actions@v3
         with:
-          command: stacks/quickstart/devlinux 
-          stack-name: devlinux
+          command: preview 
+          stack-name: stacks/quickstart/devlinux 
         env: 
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
