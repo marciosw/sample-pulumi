@@ -35,5 +35,7 @@ jobs:
           command: up 
           work-dir: ./pulumi
           stack-name: marciosw/quickstart/devlinux
+          comment-on-pr: true
+          pulumi-version: 3.70.0
         env: 
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
