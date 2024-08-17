@@ -26,7 +26,6 @@ jobs:
       - name: "exec pulumi" # This should now work correctly!
         uses: pulumi/actions@v3
         with:
-          working-directory: ./pulumi 
           command: preview 
           stack-name: marciosw/quickstart/devlinux
         env: 

@@ -51,7 +51,7 @@ export const helloUrl = helloService.statuses[0].url;
 // const myImage = new docker.Image(imageName, {
 //     imageName: pulumi.interpolate`gcr.io/${gcp.config.project}/${imageName}:latest`,
 //     build: {
-//         context: "../",
+//         context: "../sample-pulumi",
 //         platform: "linux/amd64",
 
 //     },
