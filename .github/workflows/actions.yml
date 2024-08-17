@@ -27,6 +27,7 @@ jobs:
       - name: "setup GCP"
         uses: "google-github-actions/setup-gcloud@v1"
 
+
       # --- Pulumi Specific Setup ---
       - name: Install Pulumi dependencies
         working-directory: ./pulumi  # Set working directory here
