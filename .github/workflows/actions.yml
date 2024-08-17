@@ -33,11 +33,7 @@ jobs:
         run: npm install
 
       - name: Configure Pulumi CLI 
-        working-directory: ./pulumi  # Set working directory here
-        run: |
-          # No need for sudo with actions/setup-node
-          npm config set registry https://my-registry.example.com/
-          npm install -g @pulumi/cli
+        uses: pulumi/setup-pulumi@v2
 
       - name: Pulumi Preview
         working-directory: ./pulumi  # Set working directory here
