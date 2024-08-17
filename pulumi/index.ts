@@ -5,7 +5,8 @@ import * as gcp from "@pulumi/gcp";
 import * as pulumi from "@pulumi/pulumi";
 
 // Location to deploy Cloud Run services
-const location = gcp.config.region || "us-central1";
+//const location = gcp.config.region || "us-central1";
+const location = "us-central1";
 
 // Enable Cloud Run service for the current project
 // Commented out not to disable the service at every destroy
@@ -61,7 +62,6 @@ const myImage = new docker.Image(imageName, {
     build: {
         context: "../",
         platform: "linux/amd64",
-
     },
 });
 
