@@ -1,13 +1,17 @@
-name: Create Bucket
+name: Deploy Cloud Run
 
 on: [push]
 
 jobs: 
+
   testing-action:
+
     runs-on: ubuntu-latest
+
     defaults:
       run:
         working-directory: pulumi
+        
     steps: 
       - uses: actions/checkout@v3
 
