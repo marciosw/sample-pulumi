@@ -37,6 +37,6 @@ jobs:
 
       - name: Pulumi Up
         working-directory: ./pulumi  # Set working directory here
-        run: pulumi up --stack marciosw/quickstart/devlinux
+        run: pulumi up --yes --stack marciosw/quickstart/devlinux
         env: 
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_TOKEN }}
