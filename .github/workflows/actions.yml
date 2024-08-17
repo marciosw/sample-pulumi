@@ -11,7 +11,7 @@ jobs:
     defaults:
       run:
         working-directory: pulumi
-        
+
     steps: 
       - uses: actions/checkout@v3
 
@@ -29,6 +29,9 @@ jobs:
 
       - name: "setup GCP"
         uses: "google-github-actions/setup-gcloud@v1"
+
+      - name: "Verify Folder"
+        run: pwd
 
       - name: "exec pulumi" # This should now work correctly!
         uses: pulumi/actions@v3
