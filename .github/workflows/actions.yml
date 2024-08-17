@@ -28,7 +28,6 @@ jobs:
       - name: "setup GCP"
         uses: "google-github-actions/setup-gcloud@v1"
 
-
       # --- Pulumi Specific Setup ---
       - name: "exec pulumi" # This should now work correctly!
         uses: pulumi/actions@v3
