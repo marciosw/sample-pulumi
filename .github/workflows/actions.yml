@@ -33,6 +33,9 @@ jobs:
       - name: "Verify Folder"
         run: pwd
 
+      - name: "Verify Content"
+        run: ls
+
       - name: "exec pulumi" # This should now work correctly!
         uses: pulumi/actions@v3
         with:
